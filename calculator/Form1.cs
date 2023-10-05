@@ -7,78 +7,18 @@ namespace calculator
             InitializeComponent();
         }
 
-        string opr = "Start";
-        double runningTotal = 0, tempHolder = 0;
-        bool equalsClicked = false, firstNum = true;
+        private string opr = "Start";
+        private double runningTotal;
+        private bool equalsClicked, firstNum = true;
 
-        private void btnZero_Click(object sender, EventArgs e)
+        private void digitClick(object sender, EventArgs e)
         {
             restartCalc();
-            txtMain.Text += 0;
-            
-        }
-
-        private void btnOne_Click(object sender, EventArgs e)
-        {
-            restartCalc();
-            txtMain.Text += 1;
-            
-        }
-
-        private void btnTwo_Click(object sender, EventArgs e)
-        {
-            restartCalc();
-            txtMain.Text += 2;
-            
-        }
-
-        private void btnThree_Click(object sender, EventArgs e)
-        {
-            restartCalc();
-            txtMain.Text += 3;
-            
-        }
-
-        private void btnFour_Click(object sender, EventArgs e)
-        {
-            restartCalc();
-            txtMain.Text += 4;
-            
-        }
-
-        private void btnFive_Click(object sender, EventArgs e)
-        {
-            restartCalc();
-            txtMain.Text += 5;
-            
-        }
-
-        private void btnSix_Click(object sender, EventArgs e)
-        {
-            restartCalc();
-            txtMain.Text += 6;
-            
-        }
-
-        private void btnSeven_Click(object sender, EventArgs e)
-        {
-            restartCalc();
-            txtMain.Text += 7;
-            
-        }
-
-        private void btnEight_Click(object sender, EventArgs e)
-        {
-            restartCalc();
-            txtMain.Text += 8;
-            
-        }
-
-        private void btnNine_Click(object sender, EventArgs e)
-        {
-            restartCalc();
-            txtMain.Text += 9;
-            
+            if (String.IsNullOrEmpty(txtMain.Text) || Convert.ToDouble(txtMain.Text) == 0)
+            {
+                txtMain.Clear();
+            }
+            txtMain.Text += (sender as Button).Text;
         }
 
         private void btnDecimal_Click(object sender, EventArgs e)
@@ -91,7 +31,7 @@ namespace calculator
 
         private void btnClrAll_Click(object sender, EventArgs e)
         {
-            txtMain.Clear();
+            clearMain();
             txtSecondary.Clear();
         }
 
@@ -246,6 +186,21 @@ namespace calculator
                     break;
             }
         }
+        
+        private void clearMain()
+        {
+            txtMain.Clear();
+            txtMain.Text += 0;
+        }
 
+        private void btnBckSpc_Click(object sender, EventArgs e)
+        {
+            txtMain.Text = txtMain.Text.Remove(txtMain.Text.Length - 1);
+
+            if (String.IsNullOrEmpty(txtMain.Text))
+            {
+                txtMain.Text += 0;
+            }
+        }
     }
 }
