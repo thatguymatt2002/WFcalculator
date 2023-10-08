@@ -7,7 +7,7 @@ namespace calculator
             InitializeComponent();
         }
 
-        private string opr = "Start";
+        private string opr = "Start", memoryValue = "0";
         private double runningTotal;
         private bool equalsClicked, firstNum = true;
 
@@ -186,7 +186,7 @@ namespace calculator
                     break;
             }
         }
-        
+
         private void clearMain()
         {
             txtMain.Clear();
@@ -201,6 +201,57 @@ namespace calculator
             {
                 txtMain.Text += 0;
             }
+        }
+
+        private void memoryStore()
+        {
+            memoryValue = txtMain.Text;
+        }
+
+        private void btnMmryStr_Click(object sender, EventArgs e)
+        {
+            memoryStore();
+        }
+
+        private void memoryClear()
+        {
+            memoryValue = "0";
+        }
+
+        private void btnMmryClr_Click(object sender, EventArgs e)
+        {
+            memoryClear();
+        }
+
+        private void memoryRecall()
+        {
+            txtMain.Text = memoryValue;
+        }
+
+        private void btnMmryRcll_Click(object sender, EventArgs e)
+        {
+            memoryRecall();
+        }
+
+        private void memoryAdd()
+        {
+            memoryValue = Convert.ToString(Convert.ToDouble(memoryValue) + Convert.ToDouble(txtMain.Text));
+        }
+
+        private void memorySubtract()
+        {
+            memoryValue = Convert.ToString(Convert.ToDouble(memoryValue) - Convert.ToDouble(txtMain.Text));
+        }
+
+        private void btnMmryAdd_Click(object sender, EventArgs e)
+        {
+            memoryAdd();
+        }
+
+        private void btnMmrySub_Click(object sender, EventArgs e)
+        {
+
+            memorySubtract();
         }
     }
 }
